@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Life Dashboard</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&family=Space+Grotesk:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
+<body>
+
+    <!-- THEME TOGGLE -->
+    <button class="theme-toggle" id="themeToggle" title="Toggle Light/Dark Mode">
+        <i class="fas fa-moon" id="themeIcon"></i>
+    </button>
+
+    <div class="container">
+
+        <!-- GREETING SECTION -->
+        <header class="greeting-card card">
+            <div class="clock" id="clock">00:00:00</div>
+            <div class="date" id="date">—</div>
+            <div class="greeting" id="greeting">Hello</div>
+            <div class="name-section">
+                <span id="greetName" class="greet-name"></span>
+                <button class="icon-btn" id="editNameBtn" title="Set your name">
+                    <i class="fas fa-pen"></i>
+                </button>
+            </div>
+            <!-- Name Modal -->
+            <div class="modal-overlay" id="nameModal">
+                <div class="modal">
+                    <h3>What's your name?</h3>
+                    <input type="text" id="nameInput" placeholder="Enter your name..." maxlength="30" />
+                    <div class="modal-actions">
+                        <button class="btn btn-ghost" id="cancelName">Cancel</button>
+                        <button class="btn btn-primary" id="saveName">Save</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="grid">
+
+            <!-- FOCUS TIMER -->
+            <section class="card timer-card">
+                <div class="card-title"><i class="fas fa-stopwatch"></i> Focus Timer</div>
+                <div class="timer-display" id="timerDisplay">25:00</div>
+                <div class="timer-label" id="timerLabel">Pomodoro</div>
+
+                <div class="timer-duration-control">
+                    <label>Duration (min)</label>
+                    <div class="duration-row">
+                        <button class="icon-btn" id="minusDuration"><i class="fas fa-minus"></i></button>
+                        <span id="durationValue">25</span>
+                        <button class="icon-btn" id="plusDuration"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+
+                <div class="timer-progress">
+                    <div class="timer-bar" id="timerBar"></div>
+                </div>
+
+                <div class="timer-controls">
+                    <button class="btn btn-primary" id="startBtn"><i class="fas fa-play"></i> Start</button>
+                    <button class="btn btn-ghost" id="stopBtn"><i class="fas fa-pause"></i> Stop</button>
+                    <button class="btn btn-ghost" id="resetBtn"><i class="fas fa-rotate-left"></i> Reset</button>
+                </div>
+            </section>
+
+            <!-- TO-DO LIST -->
+            <section class="card todo-card">
+                <div class="card-title"><i class="fas fa-list-check"></i> Tasks</div>
+
+                <div class="todo-input-row">
+                    <input type="text" id="taskInput" placeholder="Add a new task..." maxlength="80" />
+                    <button class="btn btn-primary" id="addTaskBtn"><i class="fas fa-plus"></i></button>
+                </div>
+
+                <div class="todo-toolbar">
+                    <select id="sortSelect" title="Sort tasks">
+                        <option value="default">Default</option>
+                        <option value="asc">A → Z</option>
+                        <option value="desc">Z → A</option>
+                        <option value="done">Done Last</option>
+                    </select>
+                </div>
+
+                <ul class="task-list" id="taskList"></ul>
+                <div class="empty-state" id="emptyTasks">
+                    <i class="fas fa-inbox"></i>
+                    <span>No tasks yet. Add one!</span>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- QUICK LINKS -->
+        <section class="card links-card">
+            <div class="card-title"><i class="fas fa-link"></i> Quick Links</div>
+            <div class="links-input-row">
+                <input type="text" id="linkName" placeholder="Name" maxlength="20" />
+                <input type="url" id="linkUrl" placeholder="https://..." />
+                <button class="btn btn-primary" id="addLinkBtn"><i class="fas fa-plus"></i> Add</button>
+            </div>
+            <div class="links-grid" id="linksGrid"></div>
+            <div class="empty-state" id="emptyLinks">
+                <i class="fas fa-satellite-dish"></i>
+                <span>No quick links yet.</span>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Edit Task Modal -->
+    <div class="modal-overlay" id="editModal">
+        <div class="modal">
+            <h3>Edit Task</h3>
+            <input type="text" id="editTaskInput" placeholder="Task name..." maxlength="80" />
+            <div class="modal-actions">
+                <button class="btn btn-ghost" id="cancelEdit">Cancel</button>
+                <button class="btn btn-primary" id="saveEdit">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Duplicate Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
